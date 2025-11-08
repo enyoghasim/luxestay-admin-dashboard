@@ -1,6 +1,6 @@
 "use client";
 import { Field, Form, Formik } from "formik";
-import { forgotPasswordFormInitialValues } from "../../types/auth.types";
+import { ForgotPasswordFormInitialValues } from "../../types/auth.types";
 import { ForgotPasswordValidationSchema } from "../../schema/validations";
 import ErrorAlert from "@/modules/common/components/error-alert";
 import { Input } from "@/modules/common/components/ui/input";
@@ -12,7 +12,7 @@ import Logo from "@/modules/common/icons/logo";
 const ForgotPasswordForm = () => {
   return (
     <Formik
-      initialValues={forgotPasswordFormInitialValues}
+      initialValues={ForgotPasswordFormInitialValues}
       validationSchema={ForgotPasswordValidationSchema}
       onSubmit={() => {}}
     >

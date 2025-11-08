@@ -1,7 +1,7 @@
 import React from "react";
 
 const JetsPage = () => {
-  return <div>JetsPage</div>;
+  return <div className="p-5">JetsPage</div>;
 };
 
 export default JetsPage;

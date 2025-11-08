@@ -1,6 +1,6 @@
 "use client";
 import { Field, Form, Formik } from "formik";
-import { resetPasswordFormInitialValues } from "../../types/auth.types";
+import { ResetPasswordFormInitialValues } from "../../types/auth.types";
 import { ResetPasswordValidationSchema } from "../../schema/validations";
 import ErrorAlert from "@/modules/common/components/error-alert";
 import { Input } from "@/modules/common/components/ui/input";
@@ -16,7 +16,7 @@ const ResetPasswordForm = () => {
   return (
     <Formik
       initialValues={{
-        ...resetPasswordFormInitialValues,
+        ...ResetPasswordFormInitialValues,
         selector: params.selector,
         token: params.token,
       }}

@@ -9,7 +9,7 @@ const DashboardLayoutUi: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const { openSidebar } = useSidebarStore();
   return (
-    <section className="md:ml-72 min-[1500px]:ml-auto! max-w-[1500px] mx-auto">
+    <section className="md:ml-72 min-[3500px]:ml-auto! max-w-[3500px] mx-auto">
       <header className="sticky md:hidden block top-0 bg-white w-full p-5 border-b border-neutral-200">
         <Button onClick={openSidebar} variant="outline">
           <LuMenu className=" w-5! h-5! shrink-0" />

@@ -1,6 +1,6 @@
 "use client";
 import { Field, Form, Formik } from "formik";
-import { signinFormInitialValues } from "../../types/auth.types";
+import { SigninFormInitialValues } from "../../types/auth.types";
 import { SigninValidationSchema } from "../../schema/validations";
 import ErrorAlert from "@/modules/common/components/error-alert";
 import { Input } from "@/modules/common/components/ui/input";
@@ -8,13 +8,15 @@ import { LuLock, LuMail } from "react-icons/lu";
 import { Button } from "@/modules/common/components/ui/button";
 import Link from "next/link";
 import Logo from "@/modules/common/icons/logo";
+import useAuth from "@/modules/auth/services/auth.mutation";
 
 const SigninForm = () => {
+  const { signin } = useAuth();
   return (
     <Formik
-      initialValues={signinFormInitialValues}
+      initialValues={SigninFormInitialValues}
       validationSchema={SigninValidationSchema}
-      onSubmit={() => {}}
+      onSubmit={signin}
     >
       {({ handleSubmit, errors, touched, status, isSubmitting }) => (
         <>
@@ -22,11 +24,12 @@ const SigninForm = () => {
             className="space-y-4  md:max-w-lg w-full mx-auto"
             onSubmit={handleSubmit}
           >
-            <ErrorAlert message={status?.error} />
             <div className="flex flex-row items-center justify-center gap-2 mb-8">
               <Logo className="w-8 h-8" />
               <h3 className="font-medium text-lg md:text-xl">Sign In</h3>
             </div>
+
+            <ErrorAlert message={status?.error} />
 
             <Field
               as={Input}

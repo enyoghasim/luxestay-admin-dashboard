@@ -88,6 +88,11 @@ const Aside = () => {
   };
 
   const { isOpen, closeSidebar } = useSidebarStore();
+
+  const closeSidebarHandler = () => {
+    if (!isOpen) return;
+    closeSidebar();
+  };
   return (
     <>
       <aside
@@ -124,6 +129,7 @@ const Aside = () => {
                     )}
                   >
                     <Link
+                      onClick={closeSidebarHandler}
                       href={NavItem.href}
                       className={cn(
                         "w-full flex flex-row items-center gap-2 relative bg-transparent px-4 py-2 rounded",

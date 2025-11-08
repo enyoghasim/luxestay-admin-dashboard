@@ -1,27 +1,27 @@
-export const signinFormInitialValues = {
+export const SigninFormInitialValues = {
   email: "",
   password: "",
 };
 
-export type signinFormValues = {
+export type SigninFormValues = {
   email: string;
   password: string;
 };
 
-export type forgotPasswordFormValues = {
+export type ForgotPasswordFormValues = {
   email: string;
 };
 
-export const forgotPasswordFormInitialValues = {
+export const ForgotPasswordFormInitialValues = {
   email: "",
 };
 
-export const resetPasswordFormInitialValues = {
+export const ResetPasswordFormInitialValues = {
   password: "",
   confirmPassword: "",
 };
 
-export type resetPasswordFormValues = {
+export type ResetPasswordFormValues = {
   selector: string;
   token: string;
   password: string;
