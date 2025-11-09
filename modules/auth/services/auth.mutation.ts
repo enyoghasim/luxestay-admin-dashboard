@@ -6,12 +6,39 @@ import {
 } from "@/modules/common/lib/utils";
 import { useMutation } from "@tanstack/react-query";
 import { FormikHelpers } from "formik";
-import { SigninFormValues } from "../types/auth.types";
+import {
+  ForgotPasswordFormValues,
+  ResetPasswordFormValues,
+  SigninFormValues,
+} from "../types/auth.types";
 
 export default function useAuth() {
   const { mutateAsync: signinMutation } = useMutation({
     mutationFn: async (values: SigninFormValues) => {
       const { data } = await axiosInstance.post("/auth/login", values);
+      return validateApiResponse(data);
+    },
+  });
+
+  const { mutateAsync: forgotPasswordMutation } = useMutation({
+    mutationFn: async (values: ForgotPasswordFormValues) => {
+      const { data } = await axiosInstance.post(
+        "/auth/admin/forgot-password",
+        values
+      );
+      return validateApiResponse(data);
+    },
+  });
+
+  const { mutateAsync: resetPasswordMutation } = useMutation({
+    mutationFn: async (values: ResetPasswordFormValues) => {
+      const { data } = await axiosInstance.post(
+        `/auth/admin/reset-password/${values.selector}/${values.token}`,
+        {
+          password: values.password,
+          confirmPassword: values.confirmPassword,
+        }
+      );
       return validateApiResponse(data);
     },
   });
@@ -28,7 +55,33 @@ export default function useAuth() {
     }
   };
 
+  const forgotPassword = async (
+    values: ForgotPasswordFormValues,
+    helpers: FormikHelpers<ForgotPasswordFormValues>
+  ) => {
+    try {
+      resetFormStatus(helpers);
+      await forgotPasswordMutation(values);
+    } catch (error) {
+      helpers.setStatus({ error: handleApiError(error).message });
+    }
+  };
+
+  const resetPassword = async (
+    values: ResetPasswordFormValues,
+    helpers: FormikHelpers<ResetPasswordFormValues>
+  ) => {
+    try {
+      resetFormStatus(helpers);
+      await resetPasswordMutation(values);
+    } catch (error) {
+      helpers.setStatus({ error: handleApiError(error).message });
+    }
+  };
+
   return {
     signin,
+    forgotPassword,
+    resetPassword,
   };
 }

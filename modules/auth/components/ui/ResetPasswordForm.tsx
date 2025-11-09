@@ -9,10 +9,12 @@ import { Button } from "@/modules/common/components/ui/button";
 import Link from "next/link";
 import Logo from "@/modules/common/icons/logo";
 import { useParams } from "next/navigation";
+import useAuth from "../../services/auth.mutation";
 
 const ResetPasswordForm = () => {
   const params = useParams<{ selector: string; token: string }>();
 
+  const { resetPassword } = useAuth();
   return (
     <Formik
       initialValues={{
@@ -21,7 +23,7 @@ const ResetPasswordForm = () => {
         token: params.token,
       }}
       validationSchema={ResetPasswordValidationSchema}
-      onSubmit={() => {}}
+      onSubmit={resetPassword}
     >
       {({ handleSubmit, errors, touched, status, isSubmitting }) => (
         <>

@@ -8,13 +8,15 @@ import { LuMail } from "react-icons/lu";
 import { Button } from "@/modules/common/components/ui/button";
 import Link from "next/link";
 import Logo from "@/modules/common/icons/logo";
+import useAuth from "../../services/auth.mutation";
 
 const ForgotPasswordForm = () => {
+  const { forgotPassword } = useAuth();
   return (
     <Formik
       initialValues={ForgotPasswordFormInitialValues}
       validationSchema={ForgotPasswordValidationSchema}
-      onSubmit={() => {}}
+      onSubmit={forgotPassword}
     >
       {({ handleSubmit, errors, touched, status, isSubmitting }) => (
         <>
