@@ -5,6 +5,14 @@ export const CreateListingInitialValues = {
 
 export type TListingType = "stay" | "property";
 
+export type TListingStatus =
+  | "available"
+  | "unavailable"
+  | "under_maintenance"
+  | "pending_approval"
+  | "closed"
+  | "in_progress";
+
 export type TListingCategory = {
   createdAt: string;
   description: string;
@@ -16,19 +24,27 @@ export type TListingCategory = {
 export type TCreateListingInitialValues = typeof CreateListingInitialValues;
 
 export type TListing = {
-  id: string;
+  id: number;
   type: TListingType;
+  baseCurrency: string;
+  base_price_minor: number;
+  city: string | null;
+  country: string | null;
+  createdAt: string;
+  description: string | null;
+  fullAddress: string | null;
+  host: number;
+  isInternal: boolean;
+  listingCategoryId: number;
+  locationVerifiedByTeam: boolean;
+  name: string;
+  propertyRating: number;
+  status: TListingStatus;
 };
 
 export type TListingQuery = {
   limit?: number;
-  status?:
-    | "available"
-    | "unavailable"
-    | "under_maintenance"
-    | "pending_approval"
-    | "closed"
-    | "in_progress";
+  status?: TListingStatus;
   listingCategoryId?: number;
   type?: TListingType;
   isInternal?: boolean;
