@@ -30,6 +30,8 @@ export type TListing = {
   base_price_minor: number;
   city: string | null;
   country: string | null;
+  state: string | null;
+  postalCode: string | null;
   createdAt: string;
   description: string | null;
   fullAddress: string | null;

@@ -34,7 +34,7 @@ export default function PropertyCard({ listing, onViewDetails }: Props) {
   const handleViewDetails = React.useCallback(() => {
     onViewDetails?.(listing);
     // Navigate to the public listing detail page
-    void router.push(`/listing/${listing.id}`);
+    void router.push(`/listings/${listing.id}`);
   }, [listing, onViewDetails, router]);
 
   // Simple currency formatting. Assumes `base_price_minor` is in minor units
