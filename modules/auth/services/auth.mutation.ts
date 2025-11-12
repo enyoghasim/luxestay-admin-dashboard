@@ -11,11 +11,13 @@ import {
   ResetPasswordFormValues,
   SigninFormValues,
 } from "../types/auth.types";
+import { useRouter } from "next/navigation";
 
 export default function useAuth() {
+  const router = useRouter();
   const { mutateAsync: signinMutation } = useMutation({
     mutationFn: async (values: SigninFormValues) => {
-      const { data } = await axiosInstance.post("/auth/login", values);
+      const { data } = await axiosInstance.post("/auth/admin/signin", values);
       return validateApiResponse(data);
     },
   });
@@ -50,6 +52,7 @@ export default function useAuth() {
     try {
       resetFormStatus(helpers);
       await signinMutation(values);
+      router.push("/");
     } catch (error) {
       helpers.setStatus({ error: handleApiError(error).message });
     }
