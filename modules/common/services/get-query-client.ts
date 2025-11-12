@@ -24,7 +24,7 @@ export function makeQueryClient() {
         retry: 1,
         refetchOnMount: "always",
         refetchOnReconnect: "always",
-        refetchOnWindowFocus: true,
+        refetchOnWindowFocus: false,
         refetchIntervalInBackground: true,
         networkMode: "offlineFirst",
         // gcTime: 60 * 1000,

@@ -10,7 +10,7 @@ type ListingFiltersState = {
 };
 
 const initialFilters: TListingQuery = {
-  limit: 25,
+  limit: 24,
 };
 
 export const useListingFiltersStore = create<ListingFiltersState>((set) => ({
