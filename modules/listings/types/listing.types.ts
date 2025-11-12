@@ -19,3 +19,18 @@ export type TListing = {
   id: string;
   type: TListingType;
 };
+
+export type TListingQuery = {
+  limit?: number;
+  status?:
+    | "available"
+    | "unavailable"
+    | "under_maintenance"
+    | "pending_approval"
+    | "closed"
+    | "in_progress";
+  listingCategoryId?: number;
+  type?: TListingType;
+  isInternal?: boolean;
+  search?: string;
+};

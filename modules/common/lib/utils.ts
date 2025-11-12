@@ -25,6 +25,15 @@ export interface ApiResponse<T = unknown> {
   data?: T;
 }
 
+export interface PaginatedResponse<T> {
+  data: T[];
+  nextCursor: {
+    createdAt: string;
+    id: number;
+  };
+  hasNext: boolean;
+}
+
 export function validateApiResponse<T>(response: ApiResponse<T>): T {
   if (!response || !response.success) {
     throw new Error(response.message || "An error occurred");
